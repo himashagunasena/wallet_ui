@@ -128,34 +128,40 @@ class _CardScreenState extends State<CardScreen>
   }
 
   Widget operation() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(height: 24),
+          listCardWithPadding(
+            data: "Top up Card",
+          ),
+          SizedBox(height: 24),
+          listCardWithPadding(
+            data: "Payment",
+          ),
+          SizedBox(height: 24),
+          listCardWithPadding(
+            data: "Card Output",
+          ),
+          SizedBox(height: 16),
+          listCardWithPadding(
+            data: "Take all money to card",
+          ),
+          SizedBox(height: 24),
+          listCardWithPadding(
+            data: "Take all money to card",
+          ),
+          SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget listCardWithPadding({String? data}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 24),
-            ListCard(
-              data: "Top up Card",
-            ),
-            SizedBox(height: 24),
-            ListCard(
-              data: "Payment",
-            ),
-            SizedBox(height: 24),
-            ListCard(
-              data: "Card Output",
-            ),
-            SizedBox(height: 16),
-            ListCard(
-              data: "Take all money to card",
-            ),
-            SizedBox(height: 24),
-            ListCard(
-              data: "Take all money to card",
-            ),
-            SizedBox(height: 32),
-          ],
-        ),
+      child: ListCard(
+        data: data ?? "--",
       ),
     );
   }
