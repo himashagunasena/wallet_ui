@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -7,6 +5,7 @@ class AppColors {
   Color secondaryBgColor = Colors.white;
   Color bgColor = Color(0xFFF5F5F5);
   Color iconBlueBg = Color(0xD5C8E3FF);
+  Color buttonColor = Color(0x4CC8E3FF);
   Color fontColor = Color(0xFF464646);
   Color dividerColor = Color(0xFFDEDEDE);
 }

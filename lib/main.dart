@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:task/screens/dashboard.dart';
-import 'package:task/utils/app_colors.dart';
+import 'package:task/screens/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProviderScope(child: Dashboard()),
+      debugShowCheckedModeBanner: false,
+      home: ProviderScope(child: MainScreen()),
     );
   }
 }

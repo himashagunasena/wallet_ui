@@ -39,8 +39,14 @@ class Card {
 class CardDetails {
   final String? cardNumber;
   final String? amountEUR;
+  final String? walletAmount;
   final String? expireDate;
   final String? type;
 
-  CardDetails({this.cardNumber, this.amountEUR, this.expireDate, this.type});
+  CardDetails(
+      {this.cardNumber,
+      this.amountEUR,
+      this.expireDate,
+      this.type,
+      this.walletAmount});
 }

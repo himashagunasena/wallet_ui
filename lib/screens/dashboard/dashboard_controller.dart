@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:task/models/states/dashboard_state.dart';
 
-import '../models/wallet_model.dart';
+import '../../models/wallet_model.dart';
 
 class DashboardNotifier extends StateNotifier<DashboardState> {
   DashboardNotifier() : super(DashboardState());
@@ -30,10 +29,12 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
           ]),
           card: Card(cards: [
             CardDetails(
-              cardNumber: "54365436****6643",
-              amountEUR: "*2300",
-            )
+                cardNumber: "54365436****6643",
+                amountEUR: "*2300",
+                walletAmount: "18199.24",
+                expireDate: "03/27")
           ]));
+      amount();
       state = state.copyWith(isLoading: false, wallet: data);
     } catch (e) {
       state = state.copyWith(isLoading: false);
@@ -42,6 +43,46 @@ class DashboardNotifier extends StateNotifier<DashboardState> {
       }
     }
   }
+
+  String amount() {
+    for (AccountDetails item in state.wallet?.accounts!.accountDetails ?? []) {
+      if (item.defaultCard ?? false) {
+        return item.amountEUR ?? "0.00";
+      } else {
+        return "0.00";
+      }
+    }
+    return "0.00";
+  }
+
+  List amountList() {
+    for (AccountDetails item in state.wallet?.accounts!.accountDetails ?? []) {
+      if (item.defaultCard ?? false) {
+        return [
+          AmountList(
+              amount: item.amountEUR ?? "--",
+              mark: "E",
+              currency: "EUR Rupees"),
+          AmountList(
+              amount: item.amountGBP ?? "--",
+              mark: "\$",
+              currency: "USD Dollar")
+        ];
+      } else {
+        return [AmountList(amount: "0.00", mark: "E", currency: "EUR Rupees")];
+      }
+    }
+    return [AmountList(amount: "0.00", mark: "E", currency: "EUR Rupees")];
+  }
+}
+
+class AmountList {
+  final String amount;
+  final String mark;
+  final String currency;
+
+  AmountList(
+      {required this.amount, required this.mark, required this.currency});
 }
 
 final dashboardProvider =

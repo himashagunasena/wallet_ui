@@ -1,33 +1,28 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../utils/app_colors.dart';
 
 class ListCard extends StatefulWidget {
   final String data;
+  final Function()? onClickCard;
 
-  const ListCard({super.key, required this.data});
+  const ListCard({super.key, required this.data, this.onClickCard});
 
   @override
   State<ListCard> createState() => _ListCardState();
 }
 
 class _ListCardState extends State<ListCard> {
-  bool open = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          open != open;
-        });
+        widget.onClickCard!();
       },
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
             color: AppColors().secondaryBgColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
                   color: AppColors().dividerColor,
@@ -41,7 +36,7 @@ class _ListCardState extends State<ListCard> {
                 padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: AppColors().iconBlueBg,
-                    borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(16)),
                 child: Icon(Icons.credit_card, color: AppColors().mainColor)),
             const SizedBox(width: 16),
             Expanded(
